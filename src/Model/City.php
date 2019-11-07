@@ -13,7 +13,7 @@ class City
 
     private $City_Id;
     private $Name;
-    private $Countrycode;
+    private $CountryCode;
     private $District;
     private $Population;
 
@@ -37,9 +37,9 @@ class City
         return strtoupper($this->Name);
     }
 
-    public function setCountrycode($Countrycode)
+    public function setCountryCode($CountryCode)
     {
-        $this->Countrycode = $Countrycode;
+        $this->CountryCode = $CountryCode;
     }
 
     public function getCountryCode()

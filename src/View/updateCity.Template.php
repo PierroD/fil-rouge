@@ -1,10 +1,5 @@
 <?php
-if (isset($_POST["submit"])) {
-    $name = htmlspecialchars($_POST["Name"]);
-    $countrycode = htmlspecialchars($_POST["CountryCode"]);
-    $district = htmlspecialchars($_POST["District"]);
-    $population = htmlspecialchars($_POST["Population"]);
-}
+if (isset($_POST["submit"])) { }
 ?>
 
 <!DOCTYPE html>

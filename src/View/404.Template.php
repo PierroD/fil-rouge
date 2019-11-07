@@ -10,7 +10,7 @@
     <title>404</title>
 </head>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="http://127.0.0.1:8080/"><i class="fas fa-globe-europe"></i> WorldData</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -48,7 +48,7 @@
 
 <body class=" mx-auto">
     <div class="text-center">
-        <img src="https://cdn.dribbble.com/users/718859/screenshots/3267029/jisunpark_404-error.gif" />
+        <img src="https://cdn.dribbble.com/users/718859/screenshots/3267029/jisunpark_404-error.gif" height="100%" width="100%" />
     </div>
 </body>
 

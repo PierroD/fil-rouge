@@ -33,11 +33,30 @@ class DAOCountry
         $prepareStatement = $this->cnx->prepare($SQL);
         $prepareStatement->execute();
     }
-    public function update(Country $country): void // * Update
+    public function update(Country $country): bool // * Update
     {
-        $SQL = "UPDATE country SET Code = $country->getCode() Name = $country->getName() Continent =$country->getContient() Region = $country->getRegion() SurfaceArea = $country->getSurfaceArea() IndepYear = $country->getIndepYear() Population = $country->getPopulation() LifeExpectancy = $country->getLifeExpectancy() GNP = $country->getGNP() GNPOld = $country->getGNPOld() LocalName =$country->getLocalName() GovernmentForm = $country->getGovernmentForm() HeadOfState = $country->getHeadOfState() Capital = $country->getCapital() Code2 = $country->getCode2() Image1 = $country->getImage1() Image2 = $country->getImage2() WHERE Country_Id = $country->getCountryById()";
+        $SQL = "UPDATE country SET Code =:code, Name =:names, Continent =:continent, Region =:region, SurfaceArea =:surfaceArea, IndepYear =:indepYear, Population =:populations, LifeExpectancy =:lifeExpectancy, GNP =:gnp, GNPOld =:gnpOld, LocalName =:localName, GovernmentForm =:government, HeadOfState =:headOfState, Capital =:capital, Code2 =:code2 WHERE Country_Id =:cid";
         $prepareStatement = $this->cnx->prepare($SQL);
-        $prepareStatement->execute();
+        $prepareStatement->bindValue("code", $country->getCode());
+        $prepareStatement->bindValue("names", $country->getName());
+        $prepareStatement->bindValue("continent", $country->getContinent());
+        $prepareStatement->bindValue("region", $country->getRegion());
+        $prepareStatement->bindValue("surfaceArea", $country->getSurfaceArea());
+        $prepareStatement->bindValue("indepYear", $country->getIndepYear());
+        $prepareStatement->bindValue("populations", $country->getPopulation());
+        $prepareStatement->bindValue("lifeExpectancy", $country->getLifeExpectancy());
+        $prepareStatement->bindValue("gnp", $country->getGNP());
+        $prepareStatement->bindValue("gnpOld", $country->getGNPOld());
+        $prepareStatement->bindValue("localName", $country->getLocalName());
+        $prepareStatement->bindValue("government", $country->getGovernmentForm());
+        $prepareStatement->bindValue("headOfState", $country->getHeadOfState());
+        $prepareStatement->bindValue("capital", $country->getCapital());
+        $prepareStatement->bindValue("code2", $country->getCode2());
+        $prepareStatement->bindValue("cid", $country->getCountryId());
+
+        $upd_country = $prepareStatement->execute();
+        var_dump($upd_country);
+        return $upd_country;
     }
     public function remove($id): void // * Delete
     {

@@ -68,6 +68,7 @@ class DAOCity
         $prepareStatement->bindParam("id", $id);
         $prepareStatement->execute();
         $ville = $prepareStatement->fetchObject("City");
+
         return $ville;
     }
 
@@ -103,7 +104,6 @@ class DAOCity
     public function update(City $city): bool // * Update
     {
         $SQL = "UPDATE city SET Name =:names, CountryCode =:CCode, District =:district, Population =:populations WHERE City_Id =:id";
-        // ?, CountryCode =?, District =?, Population =? WHERE City_Id=?";
         // :names, CountryCode =:CCode, District =:district, Population =:populations WHERE City_Id =:id";
         //'TIRANA', CountryCode ='ALB', District='Tirana', Population='270000' WHERE City_Id =34";
         $prepareStatement = $this->cnx->prepare($SQL);
@@ -113,18 +113,7 @@ class DAOCity
         $prepareStatement->bindValue("district", $city->getDistrict());
         $prepareStatement->bindValue("populations", $city->getPopulation());
         $prepareStatement->bindValue("id", $city->getCityId());
-
-        /*
-        $prepareStatement->bindParam(1, $city->getName(), PDO::PARAM_STR);
-        $prepareStatement->bindParam(2, $city->getCountryCode(), PDO::PARAM_STR);
-        $prepareStatement->bindParam(3, $city->getDistrict(), PDO::PARAM_STR);
-        $prepareStatement->bindParam(4, $city->getPopulation(), PDO::PARAM_INT);
-        $prepareStatement->bindParam(5, $city->getCityId(), PDO::PARAM_INT);
-*/
-        //var_dump($prepareStatement); 
-
         $upd_city = $prepareStatement->execute();
-        // var_dump($upd_city);
         return $upd_city;
     }
     public function remove(City $city): bool // * Delete

@@ -48,7 +48,7 @@ class CityController
         $upd_city->setDistrict($District);
         $upd_city->setPopulation($Population);
         //print("<pre>" . print_r($upd_city) . "</pre>");
-       // var_dump($upd_city);
+        // var_dump($upd_city);
         $dao_city->update($upd_city);
     }
 }
