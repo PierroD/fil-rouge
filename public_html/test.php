@@ -1,6 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/src/Renderer.php';
-
+require_once $_SERVER['DOCUMENT_ROOT'] . '/src/Model/DAOCountryLanguage.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,24 +25,23 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/src/Renderer.php';
     echo "nom : " .$city->getNom();
     */
         // * instance de DAO_City
-        $dao_city = new DAOCity(Singleton::getInstance()->cnx);
-
+        $dao_city =  new DAOCity(Singleton::getInstance()->cnx);
         /*
     print("<pre>" . print_r($_SERVER, true) . "</pre>");
     */
 
 
-        /* test find /
+        /* test find /  Ok !
     $city = $dao_city->find(1);
     echo "city_name : " . $city->getName();
     */
 
-        // test count 
+        // test count    Ok !
         /*   $city = $dao_city->count();
         echo "nombre de city : $city";
         */
 
-        // test find by name 
+        // test find by name    Ok !
         /*
         $citi = $dao_city->findByName("Kabul");
         foreach ($citi as $city) {
@@ -50,7 +49,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/src/Renderer.php';
         }
         */
 
-        // test find by name starting 
+        // test find by name starting    Ok !
         /*
         $citi = $dao_city->findByNameStartingWith("Par");
         foreach ($citi as $city) {
@@ -60,12 +59,33 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/src/Renderer.php';
 
         // test find by country
 
-        /* test find all
+        /* test find all   Ok !
     $citi = $dao_city->findAll();
     foreach ($citi as $city) {
         echo "comme ville il y a  : " . $city->getName() . " <br/>";
     }
     */
+        // *dao countrylangauge
+        $dao_cl = new DAOCountryLanguage(Singleton::getInstance()->cnx);
+        /*$cl = $dao_cl->find(11); // * find Ok !
+          var_dump($cl);*/
+
+        /*$cl_l = $dao_cl->findFromCountry(2); // * find from a country ID Ok !
+        var_dump($cl_l);
+
+        foreach ($cl_l as $cl) {
+            echo "comme langage il y a  : " . $cl->getLanguage() . " <br/>";
+        }*/
+        /*
+        $cl_list = $dao_cl->findFromCountry(2);
+        print("<pre>" . print_r($cl_list, true) . "</pre>");
+
+        foreach ($cl_list as $cl) {
+            $dao_cl->remove($cl);
+        }
+        var_dump($cl_list);
+        */
+
         ?>
     </test>
 

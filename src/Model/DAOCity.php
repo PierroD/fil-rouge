@@ -121,7 +121,6 @@ class DAOCity
         $SQL = "DELETE FROM city WHERE City_Id=:id";
         $prepareStatement = $this->cnx->prepare($SQL);
         $prepareStatement->bindValue("id", $city->getCityId());
-        //$city->setCityId();
         return $prepareStatement->execute();
     }
 
@@ -155,14 +154,28 @@ class DAOCity
         $prepareStatement->bindValue("code", $country->getCode());
         $prepareStatement->execute();
         $prepareStatement->setFetchMode(PDO::FETCH_CLASS, 'Country');
-        //$prepareStatement->execute();
-        //$list_ville = $prepareStatement->fetchObject("City");
         $country_list = [];
         foreach ($prepareStatement as $city) {
             $country_list[] = $city;
         }
         return $country_list;
     }
+
+    public function findFromCountryByID($id): array
+    {
+        $SQL = "SELECT countrylanguage.* FROM countrylanguage, country where CountryCode = Code AND Country_Id =:id";
+        $prepareStatement = $this->cnx->prepare($SQL);
+        $prepareStatement->bindValue("id", $id);
+        $prepareStatement->execute();
+        $prepareStatement->setFetchMode(PDO::FETCH_CLASS, 'CountryLanguage');
+        $cl_list = [];
+        foreach ($prepareStatement as $cl) {
+            $cl_list[] = $cl;
+        }
+        var_dump($cl_list);
+        return $cl_list;
+    }
+
     public function findByName(string $name): array
     {
         $SQL = "SELECT * FROM city WHERE city.Name=:name";
@@ -201,8 +214,6 @@ class DAOCity
         $prepareStatement->bindValue("id", $id);
         $prepareStatement->execute();
         $prepareStatement->setFetchMode(PDO::FETCH_CLASS, 'City');
-        //$prepareStatement->execute();
-        //$list_ville = $prepareStatement->fetchObject("City");
         $cities_list = [];
         foreach ($prepareStatement as $city) {
             $cities_list[] = $city;

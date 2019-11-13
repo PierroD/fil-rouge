@@ -51,4 +51,13 @@ class CityController
         // var_dump($upd_city);
         $dao_city->update($upd_city);
     }
+
+    public function deleteAllForCountry($id)
+    {
+        $dao_city = new DAOCity(Singleton::getInstance()->cnx);
+        $city_list = $dao_city->findByCountryId($id);
+        foreach ($city_list as $city) {
+            $dao_city->remove($city);
+        }
+    }
 }

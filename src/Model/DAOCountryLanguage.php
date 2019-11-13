@@ -1,8 +1,8 @@
 <?php
 
 // ? bon
-require_once './Singleton.php';
-require_once './CountryLanguage.php';
+require_once $_SERVER['DOCUMENT_ROOT'] .  '/src/Model/Singleton.php';
+require_once $_SERVER['DOCUMENT_ROOT'] .  '/src/Model/CountryLanguage.php';
 
 
 
@@ -17,15 +17,15 @@ class DAOCountryLanguage
     }
 
     // * Tous les CRUD (nommé comme sur les frameworks): Create, Read, Update, Delete // save, get, update, remove
-    public function getCountryLanguageById($id): CountryLanguage
+    public function find($id): CountryLanguage
     {
         // $cnx = Singleton::getInstance()->cnx;
         $SQL = "SELECT * FROM countrylanguage WHERE CountryLanguage_Id=:id";
         $prepareStatement = $this->cnx->prepare($SQL);
         $prepareStatement->bindValue("id", $id);
         $prepareStatement->execute();
-        $ville = $prepareStatement->fetchObject("City");
-        return $ville;
+        $country_l = $prepareStatement->fetchObject("CountryLanguage");
+        return $country_l;
     }
 
     public function save(CountryLanguage $countrylanguage): void // * Create
@@ -40,56 +40,45 @@ class DAOCountryLanguage
         $prepareStatement = $this->cnx->prepare($SQL);
         $prepareStatement->execute();
     }
-    public function remove($id): void // * Delete
+    public function remove(CountryLanguage $CL): bool // * Delete
     {
         $SQL = "DELETE FROM countrylanguage WHERE CountryLanguage_Id=:id";
         $prepareStatement = $this->cnx->prepare($SQL);
-        $prepareStatement->bindValue("id", $id);
-        $prepareStatement->execute();
+        $prepareStatement->bindValue("id", $CL->getCountryLanguageId());
+        return $prepareStatement->execute();
     }
     public function findAll(): array
     {
         $SQL = "SELECT * FROM countrylanguage";
-        $prepareStatement = $this->cnx->prepare($SQL);
-        $prepareStatement->execute();
-        $list_ville = $prepareStatement->fetchObject("City");
-        return $list_ville;
+        $prepareStatement = $this->cnx->query($SQL);
+        $prepareStatement->setFetchMode(PDO::FETCH_CLASS, 'CountryLanguage');
+        $cl_list = [];
+        foreach ($prepareStatement as $cl) {
+            $cl_list[] = $cl;
+        }
+        return $cl_list;
     }
     public function count(): int
     {
         $SQL = "SELECT COUNT(CountryLanguage_Id) FROM countrylanguage";
         $prepareStatement = $this->cnx->prepare($SQL);
         $prepareStatement->execute();
-        $city_count = $prepareStatement->fetch();
-        return $city_count;
+        $cl = $prepareStatement->fetch();
+        return $cl;
     }
-    /*
-    public function findFromCountryLanguage(countrylanguage $countrylanguage) : Array
+
+    public function findFromCountry($id): array
     {
-        $SQL = "SELECT * FROM city, country WHERE (city.CountryCode=country.Code AND country.Code=:code)";
+        $SQL = "SELECT countrylanguage.* FROM countrylanguage, country where CountryCode = Code AND Country_Id =:id";
         $prepareStatement = $this->cnx->prepare($SQL);
-        $prepareStatement->bindValue("code", $country->Code);
+        $prepareStatement->bindValue("id", $id);
         $prepareStatement->execute();
-        $pays_villes = $prepareStatement->fetchObject("Country");
-        return $pays_villes;
-    }
-    */
-    public function findByName(string $name): array
-    {
-        $SQL = "SELECT * FROM cicountrylanguagety WHERE (Name = %:name%)";
-        $prepareStatement = $this->cnx->prepare($SQL);
-        $prepareStatement->bindValue("name", $name);
-        $prepareStatement->execute();
-        $nom_ville = $prepareStatement->fetchObject("CountryLanguage");
-        return $nom_ville;
-    }
-    public function findByNameStartingWith(string $pattern): array
-    {
-        $SQL = "SELECT * FROM countrylanguage WHERE (Name = :name%)";
-        $prepareStatement = $this->cnx->prepare($SQL);
-        $prepareStatement->bindValue("name", $pattern);
-        $prepareStatement->execute();
-        $nom_ville = $prepareStatement->fetchObject("CountryLanguage");
-        return $nom_ville;
+        $prepareStatement->setFetchMode(PDO::FETCH_CLASS, 'CountryLanguage');
+        $cl_list = [];
+        foreach ($prepareStatement as $cl) {
+            $cl_list[] = $cl;
+        }
+        var_dump($cl_list);
+        return $cl_list;
     }
 }

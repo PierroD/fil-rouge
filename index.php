@@ -6,6 +6,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/src/Renderer.php';
 require_once $_SERVER['DOCUMENT_ROOT'] .  '/src/Controller/CityController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/src/Controller/CountryController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/src/Controller/CountryLanguageController.php';
 
 // echo "<pre>" . print_r($_SERVER, true) . "<pre>";
 
@@ -83,8 +84,11 @@ function countryRoutes_get($fragments)
                 call_user_func_array(["CountryController", "showUpdateCountry"], $fragments);
             }
         case "delete": {
-                call_user_func_array(["CountryController", "deleteCountry"], $fragments);
+                call_user_func_array(["CityController", "deleteAllForCountry"], $fragments); // delete all city
+                call_user_func_array(["CountryLanguageController", "deleteAllForCountry"], $fragments); // delete all countrylanguage
+                call_user_func_array(["CountryController", "deleteCountry"], $fragments); // delete the country
                 header("location: http://127.0.0.1:8080/");
+                break;
             }
     }
 }
@@ -138,7 +142,7 @@ function countryRoutes_post($fragments)
         case "update": {
                 //echo $fragments[0];
                 call_user_func_array(["CountryController", "updateCountry"], $fragments);
-                //header("location: http://127.0.0.1:8080/country/show/" . $fragments[0]);
+                header("location: http://127.0.0.1:8080/country/show/" . $fragments[0]);
                 break;
             }
     }

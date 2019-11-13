@@ -55,81 +55,81 @@ if (isset($_POST["submit"])) { }
                 <tbody>
                     <tr>
                         <th scope="row">Country ID</th>
-                        <td><input type="text" class="form-control" name="Country_Id" placeholder="<?= $country->getCountryID(); ?>" value="<?= $country->getCountryID(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
+                        <td><input type="text" class="form-control" name="Country_Id" required placeholder="<?= $country->getCountryID(); ?>" value="<?= $country->getCountryID(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
                     </tr>
                     <tr>
                         <th scope="row">Code</th>
-                        <td><input type="text" class="form-control" name="Code" placeholder="<?= $country->getCode(); ?>" value="<?= $country->getCode(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
+                        <td><input type="text" class="form-control" name="Code" required placeholder="<?= $country->getCode(); ?>" value="<?= $country->getCode(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
 
                     </tr>
                     <tr>
                         <th scope="row">Name</th>
-                        <td><input type="text" class="form-control" name="Name" placeholder="<?= $country->getName(); ?>" value="<?= $country->getName(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
+                        <td><input type="text" class="form-control" name="Name" required placeholder="<?= $country->getName(); ?>" value="<?= $country->getName(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
 
                     </tr>
                     <tr>
                         <th scope="row">Continent</th>
-                        <td><input type="text" class="form-control" name="Continent" placeholder="<?= $country->getContinent(); ?>" value="<?= $country->getContinent(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
+                        <td><input type="text" class="form-control" name="Continent" required placeholder="<?= $country->getContinent(); ?>" value="<?= $country->getContinent(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
 
                     </tr>
                     <tr>
                         <th scope="row">Région</th>
-                        <td><input type="text" class="form-control" name="Region" placeholder="<?= $country->getRegion(); ?>" value="<?= $country->getRegion(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
+                        <td><input type="text" class="form-control" name="Region" required placeholder="<?= $country->getRegion(); ?>" value="<?= $country->getRegion(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
 
                     </tr>
                     <tr>
                         <th scope="row">Superficie</th>
-                        <td><input type="text" class="form-control" name="SurfaceArea" placeholder="<?= $country->getSurfaceArea(); ?>" value="<?= $country->getSurfaceArea(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
+                        <td><input type="text" class="form-control" name="SurfaceArea" required placeholder="<?= $country->getSurfaceArea(); ?>" value="<?= $country->getSurfaceArea(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
 
                     </tr>
                     <tr>
                         <th scope="row">Année Indépendance</th>
-                        <td><input type="text" class="form-control" name="IndepYear" placeholder="<?= $country->getIndepYear(); ?>" value="<?= $country->getIndepYear(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
+                        <td><input type="text" class="form-control" name="IndepYear" required placeholder="<?= $country->getIndepYear(); ?>" value="<?= $country->getIndepYear(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
 
                     </tr>
                     <tr>
                         <th scope="row">Population</th>
-                        <td><input type="text" class="form-control" name="Population" placeholder="<?= $country->getPopulation(); ?>" value="<?= $country->getPopulation(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
+                        <td><input type="text" class="form-control" name="Population" required placeholder="<?= $country->getPopulation(); ?>" value="<?= $country->getPopulation(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
 
                     </tr>
                     <tr>
                         <th scope="row">Espérence de vie</th>
-                        <td><input type="text" class="form-control" name="LifeExpectancy" placeholder="<?= $country->getLifeExpectancy(); ?>" value="<?= $country->getLifeExpectancy(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
+                        <td><input type="text" class="form-control" name="LifeExpectancy" required placeholder="<?= $country->getLifeExpectancy(); ?>" value="<?= $country->getLifeExpectancy(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
 
                     </tr>
                     <tr>
                         <th scope="row">GNP</th>
-                        <td><input type="text" class="form-control" name="GNP" placeholder="<?= $country->getGNP(); ?>" value="<?= $country->getGNP(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
+                        <td><input type="text" class="form-control" name="GNP" required placeholder="<?= $country->getGNP(); ?>" value="<?= $country->getGNP(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
 
                     </tr>
                     <tr>
                         <th scope="row">GNPOld</th>
-                        <td><input type="text" class="form-control" name="GNPold" placeholder="<?= $country->getGNPOld(); ?>" value="<?= $country->getGNPOld(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
+                        <td><input type="text" class="form-control" name="GNPold" required placeholder="<?= $country->getGNPOld(); ?>" value="<?= $country->getGNPOld(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
 
                     </tr>
                     <tr>
                         <th scope="row">Nom Local</th>
-                        <td><input type="text" class="form-control" name="LocalName" placeholder="<?= $country->getLocalName(); ?>" value="<?= $country->getLocalName(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
+                        <td><input type="text" class="form-control" name="LocalName" required placeholder="<?= $country->getLocalName(); ?>" value="<?= $country->getLocalName(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
 
                     </tr>
                     <tr>
                         <th scope="row">Gouvernement</th>
-                        <td><input type="text" class="form-control" name="GovernmentForm" placeholder="<?= $country->getGovernmentForm(); ?>" value="<?= $country->getGovernmentForm(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
+                        <td><input type="text" class="form-control" name="GovernmentForm" required placeholder="<?= $country->getGovernmentForm(); ?>" value="<?= $country->getGovernmentForm(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
 
                     </tr>
                     <tr>
                         <th scope="row">Chef du pays</th>
-                        <td><input type="text" class="form-control" name="HeadOfState" placeholder="<?= $country->getHeadOfState(); ?>" value="<?= $country->getHeadOfState(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
+                        <td><input type="text" class="form-control" name="HeadOfState" required placeholder="<?= $country->getHeadOfState(); ?>" value="<?= $country->getHeadOfState(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
 
                     </tr>
                     <tr>
                         <th scope="row">ID de la capitale</th>
-                        <td><input type="text" class="form-control" name="Capital" placeholder="<?= $country->getCapital(); ?>" value="<?= $country->getCountryID(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
+                        <td><input type="text" class="form-control" name="Capital" required placeholder="<?= $country->getCapital(); ?>" value="<?= $country->getCountryID(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
 
                     </tr>
                     <tr>
                         <th scope="row">Code2</th>
-                        <td><input type="text" class="form-control" name="Code2" placeholder="<?= $country->getCode2(); ?>" value="<?= $country->getCountryID(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
+                        <td><input type="text" class="form-control" name="Code2" required placeholder="<?= $country->getCode2(); ?>" value="<?= $country->getCode2(); ?>" aria-label="Username" aria-describedby="basic-addon1"></td>
 
                     </tr>
                     <tr>

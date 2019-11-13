@@ -24,7 +24,7 @@ class CountryController
     {
         $dao_country = new DAOCountry(Singleton::getInstance()->cnx);
         $country_remove = $dao_country->find($id);
-        $country = $dao_country->remove($country_remove);
+        $dao_country->remove($country_remove);
     }
     public function showUpdateCountry($id)
     {
@@ -42,7 +42,7 @@ class CountryController
         $Region = htmlspecialchars($_POST["Region"]);
         $SurfaceArea = htmlspecialchars($_POST["SurfaceArea"]);
         $IndepYear = htmlspecialchars($_POST["IndepYear"]);
-        $Population = htmlspecialchars($_POST["Name"]);
+        $Population = htmlspecialchars($_POST["Population"]);
         $LifeExpectancy = htmlspecialchars($_POST["LifeExpectancy"]);
         $GNP = htmlspecialchars($_POST["GNP"]);
         $GNPold = htmlspecialchars($_POST["GNPold"]);

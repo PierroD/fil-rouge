@@ -23,8 +23,8 @@ class DAOCountry
         $prepareStatement = $this->cnx->prepare($SQL);
         $prepareStatement->bindValue("id", $id);
         $prepareStatement->execute();
-        $ville = $prepareStatement->fetchObject("Country");
-        return $ville;
+        $pays = $prepareStatement->fetchObject("Country");
+        return $pays;
     }
 
     public function save(Country $country): void // * Create
@@ -35,7 +35,8 @@ class DAOCountry
     }
     public function update(Country $country): bool // * Update
     {
-        $SQL = "UPDATE country SET Code =:code, Name =:names, Continent =:continent, Region =:region, SurfaceArea =:surfaceArea, IndepYear =:indepYear, Population =:populations, LifeExpectancy =:lifeExpectancy, GNP =:gnp, GNPOld =:gnpOld, LocalName =:localName, GovernmentForm =:government, HeadOfState =:headOfState, Capital =:capital, Code2 =:code2 WHERE Country_Id =:cid";
+        $SQL = "UPDATE country SET Code = :code, Name = :names, Continent = :continent, Region = :region, SurfaceArea = :surfaceArea, IndepYear = :indepYear, Population = :populations, LifeExpectancy = :lifeExpectancy, GNP = :gnp, GNPOld = :gnpOld, LocalName= :localName, GovernmentForm = :government, HeadOfState = :headOfState, Capital = :capital, Code2 = :code2 WHERE Country_Id = :cid;";
+
         $prepareStatement = $this->cnx->prepare($SQL);
         $prepareStatement->bindValue("code", $country->getCode());
         $prepareStatement->bindValue("names", $country->getName());
@@ -58,12 +59,12 @@ class DAOCountry
         var_dump($upd_country);
         return $upd_country;
     }
-    public function remove($id): void // * Delete
+    public function remove(Country $country): bool // * Delete
     {
         $SQL = "DELETE FROM country WHERE Country_Id=:id";
         $prepareStatement = $this->cnx->prepare($SQL);
-        $prepareStatement->bindValue("id", $id);
-        $prepareStatement->execute();
+        $prepareStatement->bindValue("id", $country->getCountryId());
+        return $prepareStatement->execute();
     }
     public function findAll(): array
     {
@@ -92,7 +93,7 @@ class DAOCountry
     {
         $SQL = "SELECT * FROM city, country WHERE (city.CountryCode=country.Code AND city.Name=:name)";
         $prepareStatement = $this->cnx->prepare($SQL);
-        $prepareStatement->bindValue("name", $$city->getName());
+        $prepareStatement->bindValue("name", $city->getName());
         $prepareStatement->execute();
         $prepareStatement->setFetchMode(PDO::FETCH_CLASS, 'Country');
         //$prepareStatement->execute();
