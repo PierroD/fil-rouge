@@ -51,6 +51,14 @@ switch ($control) {
             // Aisa, Europe, North America, Africa, Oceania, Antarctica, South America
             break;
         }
+    case "login": {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                loginRoutes_post($fragments);
+            }
+            $e = Renderer::render("login");
+            echo $e;
+            break;
+        }
 
     default: {
             $e = Renderer::render("404");
@@ -70,6 +78,7 @@ function countryRoutes_get($fragments)
                     call_user_func_array(["CountryController", "showCountries"], $fragments);
                 } else {
                     call_user_func_array(["CountryController", "showCountry"], $send_country);
+                    call_user_func_array(["CountryLanguageController", "showCountryLanguages"], $send_country);
                     call_user_func_array(["CityController", "showCitiesinCountry"], $send_country);
                 }
                 break;
@@ -143,6 +152,18 @@ function countryRoutes_post($fragments)
                 //echo $fragments[0];
                 call_user_func_array(["CountryController", "updateCountry"], $fragments);
                 header("location: http://127.0.0.1:8080/country/show/" . $fragments[0]);
+                break;
+            }
+    }
+}
+
+function loginRoutes_post($fragments)
+{
+    $action = array_shift($fragments);
+    switch ($action) {
+        case "login": {
+                call_user_func_array(["UserController", "login"], $fragments);
+                header("location: http://127.0.0.1:8080/");
                 break;
             }
     }

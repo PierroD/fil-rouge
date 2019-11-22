@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../../../public_html/CSS/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     <title>Cities</title>
 </head>
 
@@ -127,10 +128,6 @@
             </table>
         </div>
         <div class="col-6">
-            <div class="row d-flex h-100 justify-content-center align-items-center">
+            <div class="row justify-content-center align-items-center">
                 <img src="<?= $country->getImage2(); ?>" height="350" width="550" />
             </div>
-        </div>
-    </div>
-
-</body>

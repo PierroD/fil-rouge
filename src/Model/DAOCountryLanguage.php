@@ -78,7 +78,6 @@ class DAOCountryLanguage
         foreach ($prepareStatement as $cl) {
             $cl_list[] = $cl;
         }
-        var_dump($cl_list);
         return $cl_list;
     }
 }

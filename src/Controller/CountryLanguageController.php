@@ -12,4 +12,11 @@ class CountryLanguageController
             $dao_cl->remove($cl);
         }
     }
+    public function showCountryLanguages($id = null)
+    {
+        $dao_cl = new DAOCountryLanguage(Singleton::getInstance()->cnx);
+        $countrylanguages = $dao_cl->findFromCountry($id);
+        $e = Renderer::render("countrylanguage", compact('countrylanguages'));
+        echo $e;
+    }
 }
