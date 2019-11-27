@@ -49,7 +49,12 @@ if (($page - 2) >= 1) {
                         <td><a class="text-primary text-decoration-none font-weight-bold" href="http://127.0.0.1:8080/city/show/<?= $cities[$i]->getCityID(); ?>"><?= $cities[$i]->getName(); ?></a></td>
                         <td><?= $cities[$i]->getCountryCode(); ?></td>
                         <td><?= $cities[$i]->getPopulation(); ?></td>
-                        <td class="text-center"><a class="btn btn-success mr-2" href="http://127.0.0.1:8080/city/update/<?= $cities[$i]->getCityID(); ?>"><i class="far fa-edit" style="color:#fff"></i></a><a class="btn btn-danger ml-2" href="http://127.0.0.1:8080/city/delete/<?= $cities[$i]->getCityID(); ?>"><i class="fas fa-trash" style="color:#fff"></i></a></td>
+                        <?php if (isset($_SESSION["user"]["id"])) {
+                                    ?>
+                            <td class="text-center"><a class="btn btn-success mr-2" href="http://127.0.0.1:8080/city/update/<?= $cities[$i]->getCityID(); ?>"><i class="far fa-edit" style="color:#fff"></i></a><a class="btn btn-danger ml-2" href="http://127.0.0.1:8080/city/delete/<?= $cities[$i]->getCityID(); ?>"><i class="fas fa-trash" style="color:#fff"></i></a></td>
+                        <?php
+                                }
+                                ?>
                     </tr>
             <?php
                 }

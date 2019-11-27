@@ -38,42 +38,9 @@ if (($page - 2) >= 1) {
     <title>Country</title>
 </head>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
-    <a class="navbar-brand" href="http://127.0.0.1:8080/"><i class="fas fa-globe-europe"></i> WorldData</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="http://127.0.0.1:8080/">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
-</nav>
-
+<?php
+include "Navbar.Template.php";
+?>
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb  mb-5 container text-center">
@@ -105,8 +72,14 @@ if (($page - 2) >= 1) {
                         <td><a class="text-primary text-decoration-none font-weight-bold" href="http://127.0.0.1:8080/country/show/<?= $countries[$i]->getContinent(); ?>/<?= $countries[$i]->getCountryId(); ?>"><?= $countries[$i]->getName(); ?></a></td>
                         <td><?= $countries[$i]->getContinent(); ?></td>
                         <td><?= $countries[$i]->getCapital(); ?></td>
-                        <td class="text-center"><a class="btn btn-success mr-2" href="http://127.0.0.1:8080/country/update/<?= $countries[$i]->getCountryId(); ?>"><i class="far fa-edit" style="color:#fff"></i></a><a class="btn btn-danger ml-2" href="http://127.0.0.1:8080/country/delete/<?= $countries[$i]->getCountryID(); ?>"><i class="fas fa-trash" style="color:#fff"></i></a></td>
+                        <?php
 
+                                if (isset($_SESSION["user"]["id"])) {
+                                    ?>
+                            <td class="text-center"><a class="btn btn-success mr-2" href="http://127.0.0.1:8080/country/update/<?= $countries[$i]->getCountryId(); ?>"><i class="far fa-edit" style="color:#fff"></i></a><a class="btn btn-danger ml-2" href="http://127.0.0.1:8080/country/delete/<?= $countries[$i]->getCountryID(); ?>"><i class="fas fa-trash" style="color:#fff"></i></a></td>
+                        <?php
+                                }
+                                ?>
                     </tr>
             <?php
                 }

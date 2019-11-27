@@ -7,6 +7,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/src/Renderer.php';
 require_once $_SERVER['DOCUMENT_ROOT'] .  '/src/Controller/CityController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/src/Controller/CountryController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/src/Controller/CountryLanguageController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/src/Controller/UserController.php';
 
 // echo "<pre>" . print_r($_SERVER, true) . "<pre>";
 
@@ -58,6 +59,14 @@ switch ($control) {
             $e = Renderer::render("login");
             echo $e;
             break;
+        }
+    case "disconnect": {
+            if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                session_start();
+                session_destroy();
+                header("location: http://127.0.0.1:8080");
+                break;
+            }
         }
 
     default: {
@@ -159,12 +168,6 @@ function countryRoutes_post($fragments)
 
 function loginRoutes_post($fragments)
 {
-    $action = array_shift($fragments);
-    switch ($action) {
-        case "login": {
-                call_user_func_array(["UserController", "login"], $fragments);
-                header("location: http://127.0.0.1:8080/");
-                break;
-            }
-    }
+    call_user_func_array(["UserController", "TryAuth"], $fragments);
+    header("location: http://127.0.0.1:8080/");
 }
