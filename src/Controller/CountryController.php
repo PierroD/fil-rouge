@@ -4,7 +4,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] .  "/src/Renderer.php";
 
 class CountryController
 {
-
+    /**
+     * Récupère les pays un continent
+     *
+     * @param string $name
+     * @return void
+     */
     public function showCountries($name = null)
     {
         // $name récupère le continent
@@ -13,6 +18,12 @@ class CountryController
         $e = Renderer::render("countries", compact('countries'));
         echo $e;
     }
+    /**
+     * Récupère les informations d'un continent
+     *
+     * @param [type] $id
+     * @return void
+     */
     public function showCountry($id)
     {
         $dao_country = new DAOCountry(Singleton::getInstance()->cnx);
@@ -20,12 +31,24 @@ class CountryController
         $e = Renderer::render("country", compact('country'));
         echo $e;
     }
+    /**
+     * Supprime un pays
+     *
+     * @param [type] $id
+     * @return void
+     */
     public function deleteCountry($id)
     {
         $dao_country = new DAOCountry(Singleton::getInstance()->cnx);
         $country_remove = $dao_country->find($id);
         $dao_country->remove($country_remove);
     }
+    /**
+     * Montre le pays à mettre à jour
+     *
+     * @param [type] $id
+     * @return void
+     */
     public function showUpdateCountry($id)
     {
         $dao_country = new DAOCountry(Singleton::getInstance()->cnx);
@@ -33,6 +56,12 @@ class CountryController
         $e = Renderer::render("updateCountry", compact('country'));
         echo $e;
     }
+    /**
+     * Mets le pays à jour
+     *
+     * @param [type] $Country_Id
+     * @return void
+     */
     public function updateCountry($Country_Id)
     {
         $dao_country = new DAOCountry(Singleton::getInstance()->cnx);
@@ -72,5 +101,6 @@ class CountryController
         var_dump($upd_country);
 
         $dao_country->update($upd_country);
+        header("location: http://127.0.0.1:8080/country/show/" . $Continent);
     }
 }

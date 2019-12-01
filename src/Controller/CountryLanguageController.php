@@ -4,6 +4,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] .  "/src/Renderer.php";
 
 class CountryLanguageController
 {
+    /**
+     * Supprime toutes les langues pour un pays
+     *
+     * @param [type] $id
+     * @return void
+     */
     public function deleteAllForCountry($id)
     {
         $dao_cl = new DAOCountryLanguage(Singleton::getInstance()->cnx);
@@ -12,6 +18,12 @@ class CountryLanguageController
             $dao_cl->remove($cl);
         }
     }
+    /**
+     * Récupère toutes les langues pour un pays
+     *
+     * @param [type] $id
+     * @return void
+     */
     public function showCountryLanguages($id = null)
     {
         $dao_cl = new DAOCountryLanguage(Singleton::getInstance()->cnx);

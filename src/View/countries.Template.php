@@ -76,10 +76,21 @@ include "Navbar.Template.php";
 
                                 if (isset($_SESSION["user"]["id"])) {
                                     ?>
-                            <td class="text-center"><a class="btn btn-success mr-2" href="http://127.0.0.1:8080/country/update/<?= $countries[$i]->getCountryId(); ?>"><i class="far fa-edit" style="color:#fff"></i></a><a class="btn btn-danger ml-2" href="http://127.0.0.1:8080/country/delete/<?= $countries[$i]->getCountryID(); ?>"><i class="fas fa-trash" style="color:#fff"></i></a></td>
-                        <?php
+                            <td class="text-center">
+                                <?php
+                                            $test = $_SESSION["user"]["permission"];
+                                            if ($test[2] == 49) { ?>
+                                    <a class="btn btn-success mr-2" href="http://127.0.0.1:8080/country/update/<?= $countries[$i]->getCountryId(); ?>"><i class="far fa-edit" style="color:#fff"></i></a>
+                                <?php
+                                            }
+
+                                            if ($test[1] == 49) {
+                                                ?>
+                                    <a class="btn btn-danger ml-2" href="http://127.0.0.1:8080/country/delete/<?= $countries[$i]->getCountryID(); ?>"><i class="fas fa-trash" style="color:#fff"></i></a></td>
+                    <?php
                                 }
-                                ?>
+                            }
+                            ?>
                     </tr>
             <?php
                 }

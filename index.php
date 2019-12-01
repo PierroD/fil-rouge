@@ -100,6 +100,7 @@ function countryRoutes_get($fragments)
             }
         case "update": {
                 call_user_func_array(["CountryController", "showUpdateCountry"], $fragments);
+                break;
             }
         case "delete": {
                 call_user_func_array(["CityController", "deleteAllForCountry"], $fragments); // delete all city
@@ -160,7 +161,7 @@ function countryRoutes_post($fragments)
         case "update": {
                 //echo $fragments[0];
                 call_user_func_array(["CountryController", "updateCountry"], $fragments);
-                header("location: http://127.0.0.1:8080/country/show/" . $fragments[0]);
+                // header("location: http://127.0.0.1:8080/country/show/" . $fragments[0]);
                 break;
             }
     }
