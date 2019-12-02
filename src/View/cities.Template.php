@@ -1,4 +1,6 @@
 <?php
+if (isset($_POST["submit"])) { }
+
 //paginator
 if (!isset($_GET["page"]) || $_GET["page"] == 0) {
     $page = 1;
@@ -76,6 +78,39 @@ if (($page - 2) >= 1) {
             ?>
         </tbody>
     </table>
+    <!-- création ville-->
+    <?php
+    if ($test[3] == 49) {
+        ?>
+        <div class="card card-default border-primary mb-5 mt-5 container">
+            <h5 class="card-header text-center text-primary font-weight-bold">Création de table</h5>
+            <div class="card-body container text-center">
+                <form action="" method="post">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Name : </span>
+                        </div>
+                        <input type="text" class="form-control" required placeholder="" name="Name" aria-describedby="basic-addon1" value="">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">District : </span>
+                        </div>
+                        <input type="text" class="form-control" required placeholder="" name="District" aria-describedby="basic-addon1" value="">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Population : </span>
+                        </div>
+                        <input type="text" class="form-control" required placeholder="" name="Population" aria-describedby="basic-addon1" value="">
+                    </div>
+                    <button class="btn btn-primary btn-block"><i class="fas fa-hammer fa-flip-horizontal" name="submit"></i> Create City <i class="fas fa-hammer"></i></button>
+                </form>
+            </div>
+        </div>
+    <?php
+    }
+    ?>
     <!-- paginator -->
     <nav aria-label="...">
         <ul class="pagination pagination-lg d-flex justify-content-center ">

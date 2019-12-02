@@ -1,5 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/src/Model/DAOCountry.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/src/Model/DAOCity.php";
 require_once $_SERVER['DOCUMENT_ROOT'] .  "/src/Renderer.php";
 
 class CountryController
@@ -102,5 +103,26 @@ class CountryController
 
         $dao_country->update($upd_country);
         header("location: http://127.0.0.1:8080/country/show/" . $Continent);
+    }
+    /**
+     * Création de ville
+     *
+     * Non - fonctionnel
+     * 
+     * @param [int] $country_id
+     * @return void
+     */
+    public function createCountry($country_id)
+    {
+        $dao_country = new DAOCountry(Singleton::getInstance()->cnx);
+        $dao_city = new DAOCity(Singleton::getInstance()->cnx);
+        $country = $dao_country->find(128);
+        $upd_city = new City();
+        $upd_city->setCountryCode($country->getCode());
+        $upd_city->setName(htmlspecialchars($_POST["Name"]));
+        $upd_city->setDistrict(htmlspecialchars($_POST["District"]));
+        $upd_city->setPopulation(htmlspecialchars($_POST["Population"]));
+        // $dao_city->save($upd_city);
+        header("location: http://127.0.0.1:8080/country/show" . $country->getContinent() . "/" . $country->getCountryId());
     }
 }

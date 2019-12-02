@@ -74,20 +74,19 @@ class DAOCity
 
     public function save(City $city): void // * Create
     {
-        if ($city->getCityById() != 0) {
-            $SQL = "INSERT INTO city(Name, CountryCode, District, Population) VALUES(:names, :CCode, :district, :populations";
-            $prepareStatement = $this->cnx->prepare($SQL);
-            $prepareStatement->bindValue("names", $city->getName());
-            $prepareStatement->bindValue("CCode", $city->getCountryCode());
-            $prepareStatement->bindValue("district", $city->getDistrict());
-            $prepareStatement->bindValue("populations", $city->getPopulation());
-            // $prepareStatement->bindValue("id", $city->getCityId());
-            $prepareStatement->execute();
-        }
+        $SQL = "INSERT INTO city(Name, CountryCode, District, Population) VALUES(:names, :CCode, :district, :populations";
+        $prepareStatement = $this->cnx->prepare($SQL);
+        $prepareStatement->bindValue("names", $city->getName());
+        $prepareStatement->bindValue("CCode", $city->getCountryCode());
+        $prepareStatement->bindValue("district", $city->getDistrict());
+        $prepareStatement->bindValue("populations", $city->getPopulation());
+        // $prepareStatement->bindValue("id", $city->getCityId());
+        $prepareStatement->execute();
+        /*
         if ($prepareStatement == true) {
             $last_id = $this->cnx->LastInsertId();
-            $city->setCityById($last_city);
-        }
+            $city->setCityId($last_city);
+        }*/
     }
 
     public function LastInsertId(): int
@@ -95,9 +94,9 @@ class DAOCity
         $SQL = "SELECT MAX(City_Id) FROM city";
         $prepareStatement = $this->cnx->prepare($SQL);
         $prepareStatement->execute();
-        $rtn = $prepareStatement->fetch();
-        // echo $rtn;
-        // die;
+        $rtn = $prepareStatement->fetchColumn();
+        //var_dump($rtn);
+        //die;
         return $rtn;
     }
 

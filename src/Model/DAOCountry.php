@@ -16,6 +16,12 @@ class DAOCountry
     }
 
     // * Tous les CRUD (nommé comme sur les frameworks): Create, Read, Update, Delete // save, get, update, remove
+    /**
+     * Find
+     *
+     * @param [type] $id
+     * @return Country
+     */
     public function find($id): Country
     {
         // $cnx = Singleton::getInstance()->cnx;
@@ -26,13 +32,24 @@ class DAOCountry
         $pays = $prepareStatement->fetchObject("Country");
         return $pays;
     }
-
+    /**
+     * Save
+     *
+     * @param Country $country
+     * @return void
+     */
     public function save(Country $country): void // * Create
     {
         $SQL = "INSERT INTO country(Code, Name, Continent, Region, SurfaceArea, IndepYear, Population, LifeExpectancy, GNP, GNPOld, LocalName, GovernmentForm, HeadOfState, Capital, Code2, Image1, Image2) VALUES($country->getCode(), $country->getName(), $$country->getContient(), $country->getRegion(), $country->getSurfaceArea(), $country->getIndepYear(), $country->getPopulation(), $country->getLifeExpectancy(), $country->getGNP(), $country->getGNPOld(), $country->getLocalName(), $country->getGovernmentForm(), $country->getHeadOfState(), $country->getCapital(), $country->getCode2(), $country->getImage1(), $country->getImage2()";
         $prepareStatement = $this->cnx->prepare($SQL);
         $prepareStatement->execute();
     }
+    /**
+     * update
+     *
+     * @param Country $country
+     * @return void
+     */
     public function update(Country $country): bool // * Update
     {
         $SQL = "UPDATE country SET Code = :code, Name = :names, Continent = :continent, Region = :region, SurfaceArea = :surfaceArea, IndepYear = :indepYear, Population = :populations, LifeExpectancy = :lifeExpectancy, GNP = :gnp, GNPOld = :gnpOld, LocalName= :localName, GovernmentForm = :government, HeadOfState = :headOfState, Capital = :capital, Code2 = :code2 WHERE Country_Id = :cid;";
@@ -59,6 +76,12 @@ class DAOCountry
         var_dump($upd_country);
         return $upd_country;
     }
+    /**
+     * remove
+     *
+     * @param Country $country
+     * @return void
+     */
     public function remove(Country $country): bool // * Delete
     {
         $SQL = "DELETE FROM country WHERE Country_Id=:id";
@@ -66,6 +89,11 @@ class DAOCountry
         $prepareStatement->bindValue("id", $country->getCountryId());
         return $prepareStatement->execute();
     }
+    /**
+     * findAll 
+     *
+     * @return array
+     */
     public function findAll(): array
     {
         $SQL = "SELECT * FROM country";
@@ -79,6 +107,11 @@ class DAOCountry
         }
         return $cities_list;
     }
+    /**
+     * count
+     *
+     * @return integer
+     */
     public function count(): int
     {
         $SQL = "SELECT COUNT(Country_Id) FROM country";
@@ -88,7 +121,12 @@ class DAOCountry
         //echo $city_count;
         return $country_count;
     }
-
+    /**
+     * findFromCity
+     *
+     * @param City $city
+     * @return array
+     */
     public function findFromCity(City $city): array
     {
         $SQL = "SELECT * FROM city, country WHERE (city.CountryCode=country.Code AND city.Name=:name)";
@@ -104,7 +142,12 @@ class DAOCountry
         }
         return $country_list;
     }
-
+    /**
+     * findByContinent 
+     *
+     * @param string $continent
+     * @return array
+     */
     public function findbyContinent(string $continent): array
     {
         $SQL = "SELECT * FROM country WHERE country.Continent=:continent";

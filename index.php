@@ -156,12 +156,17 @@ function cityRoutes_post($fragments)
 
 function countryRoutes_post($fragments)
 {
+    $send_country[] = end($fragments);
     $action = array_shift($fragments);
     switch ($action) {
         case "update": {
                 //echo $fragments[0];
                 call_user_func_array(["CountryController", "updateCountry"], $fragments);
-                // header("location: http://127.0.0.1:8080/country/show/" . $fragments[0]);
+                header("location: http://127.0.0.1:8080/country/show/" . $fragments[0]);
+                break;
+            }
+        case "show": {
+                call_user_func_array(["CountryController", "createCountry"], $send_country);
                 break;
             }
     }
